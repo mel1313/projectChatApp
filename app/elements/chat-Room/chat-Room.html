@@ -27,7 +27,7 @@
      is: "chat-Room",
 
      ready: function () {
-       var socket = io.connect('http://ga-webchat.herokuapp.com/', {
+       var socket = io.connect('https://ga-webchat.herokuapp.com/', {
          'query': 'token=' + window.localStorage.getItem('userToken')
        })
 
