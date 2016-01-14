@@ -1,94 +1,90 @@
-
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <script src="https://cdn.socket.io/socket.io-1.4.3.js"></script>
 
 <dom-module id="chat-Room">
-<template>
-  <style include="shared-styles"></style>
-  <style>
-    :host {
-      display: block;
-    }
-    h2 {
-      color: blue;
-    }
-  </style>
-  <h2>this is my chatApp</h2>
-  <ol>
-    <li>...</li>
-  </ol>
+  <template>
+    <style include="shared-styles"></style>
+    <style>
+      :host {
+        display: block;
+      }
+      h2 {
+        color: blue;
+      }
+    </style>
+    <h2>this is my chatApp</h2>
+    <ol>
+      <li>...</li>
+    </ol>
 
-  <paper-input id="enter-Info" no-label-float></paper-input>
-  <paper-button toggles raised on-click="triggerChat" id='sendButton'>Send</paper-button>
-</template>
+    <paper-input id="enter-Info" no-label-float></paper-input>
+    <paper-button toggles raised on-click="triggerChat" id='sendButton'>Send</paper-button>
+  </template>
 
-<script>
- Polymer({
-   is: "chat-Room",
-   ready: function () {
-     var socket = io.connect('https://ga-webchat.herokuapp.com/', {
-       'query': 'token=' + window.localStorage.getItem('userToken')
-     })
-     socket.on('chat log', function(messages){
-       messages.forEach(function(message, index){
-         if((messages.length -index) < 10) {
-           console.log(message)
-           var display = document.createElement('li')
-           var input = message.message
-           display.innerHTML = input
-           document.querySelector('ol').appendChild(display)
-         }
-        //  console.log(message)
-        //  var display = document.createElement('li')
-        //  var input = message.message
-        //  display.innerHTML = input
-        //  document.querySelector('ol').appendChild(display)
+  <script>
+   Polymer({
+     is: "chat-Room",
+     ready: function () {
+       var socket = io.connect('https://ga-webchat.herokuapp.com/', {
+         'query': 'token=' + window.localStorage.getItem('userToken')
        })
-     })
-     socket.on('chat message', function(message){
-       console.log(message)
+       socket.on('chat log', function(messages){
+         messages.forEach(function(message, index){
+           if((messages.length -index) < 10) {
+             console.log(message)
+             var display = document.createElement('li')
+             var input = message.message
+             display.innerHTML = input
+             document.querySelector('ol').appendChild(display)
+           }
+          //  console.log(message)
+          //  var display = document.createElement('li')
+          //  var input = message.message
+          //  display.innerHTML = input
+          //  document.querySelector('ol').appendChild(display)
+         })
+       })
+       socket.on('chat message', function(message){
+         console.log(message)
+         var display = document.createElement('li')
+         var input = message.message
+         display.innerHTML = input
+         document.querySelector('ol').appendChild(display)
+       })
+     },
+     triggerChat: function () {
+       //document.querySelector('#enter-Info').value
+      //  var socket = io.connect('http://ga-webchat.herokuapp.com/', {
+      //    'query': 'token=' + window.localStorage.getItem('userToken')
+      //  })
+       //
+      //  socket.on('chat log', function(messages){
+      //    messages.forEach(function(message){
+      //      console.log(message)
+      //    })
+       //
+      //  })
+       console.log(document.querySelector('#enter-Info').value)
+      //  document.querySelector('#sendButton').addEventListener('enter-Info')
+      //    console.log('this work')
+      // var addChat = document.createElement('li') // create a new li element
+      // document.body.appendChild(addChat)
        var display = document.createElement('li')
-       var input = message.message
-       display.innerHTML = input
+       var input = document.querySelector('#enter-Info').value
+       display.textContent = input
        document.querySelector('ol').appendChild(display)
-     })
-   },
-   triggerChat: function () {
-     //document.querySelector('#enter-Info').value
-     var socket = io.connect('https://ga-webchat.herokuapp.com/', {
-       'query': 'token=' + window.localStorage.getItem('userToken')
+       //var delete = document.querySelector('#enter-Info').value
+       //chatBox.appendChild(addChat)
+       //document.getElementById("chatWindow").appendChild(chatBox)
+       }
      })
      //
-    //  socket.on('chat log', function(messages){
-    //    messages.forEach(function(message){
-    //      console.log(message)
-    //    })
-     //
-    //  })
-
-
-     console.log(document.querySelector('#enter-Info').value)
-     socket.emit('chat message', document.querySelector('#enter-Info').value)
-    //  document.querySelector('#sendButton').addEventListener('enter-Info')
-    //    console.log('this work')
-    // var addChat = document.createElement('li') // create a new li element
-    // document.body.appendChild(addChat)
-     var display = document.createElement('li')
-     var input = document.querySelector('#enter-Info').value
-     display.textContent = input
-     document.querySelector('ol').appendChild(display)
-     //var delete = document.querySelector('#enter-Info').value
-     //chatBox.appendChild(addChat)
-     //document.getElementById("chatWindow").appendChild(chatBox)
-     }
-   })
-   //
-  //    var triggerChat = document.getElementById('sendButton')
-  //    triggerChat.addEventListener('enter-Info')
-  //    console.log(triggerChat)
-// var sendButton = document.getElementById("submit-Info");
-//    console.log("yes")
-    // {
-</script>
+    //    var triggerChat = document.getElementById('sendButton')
+    //    triggerChat.addEventListener('enter-Info')
+    //    console.log(triggerChat)
+  // var sendButton = document.getElementById("submit-Info");
+  //    console.log("yes")
+      // {
+  </script>
 
 </dom-module>
