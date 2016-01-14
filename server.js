@@ -1,6 +1,8 @@
 // var fallback = require('express-history-api-fallback')
 var express = require('express')
 var app = express()
+var http = require('http').Server(app);
+const PORT = process.env.PORT || 3000
 // for https
 // var fs = require('fs')
 // var https = require('https')
@@ -13,4 +15,6 @@ var root = __dirname + '/app'
 app.use(express.static(root))
 // app.use(fallback('index.html', { root: root }))
 // require for http
-app.listen(3000)
+http.listen(PORT, () => {
+console.log(`Listening to http://localhost:${PORT}`)
+})
