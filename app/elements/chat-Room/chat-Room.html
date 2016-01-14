@@ -17,7 +17,7 @@
       <li>...</li>
     </ol>
 
-    <paper-input id="enter-Info" no-label-float></paper-input>
+    <paper-input id="enter-Info" no-label-float ></paper-input>
     <paper-button toggles raised on-click="triggerChat" id='sendButton'>Send</paper-button>
   </template>
 
@@ -39,6 +39,9 @@
            }
          })
        })
+
+       this.socket = socket
+
        socket.on('chat message', function(message){
          console.log(message)
          var display = document.createElement('li')
@@ -47,22 +50,22 @@
          document.querySelector('ol').appendChild(display)
        })
      },
-       socket.emit('chat message', function(message){
-       console.log(message)
-       var display = document.createElement('li')
-       var input = message.message
-       display.innerHTML = input
-       document.querySelector('ol').appendChild(display)
-     triggerChat: function () {
-     })
-   }
-       console.log(document.querySelector('#enter-Info').value)
+    triggerChat: function () {
+      var timestamp = new Date()
+      var profile = JSON.parse(window.localStorage.getItem('profile'))
+      var username = profile.nickname
+      var message = {
+        username: username,
+        message: document.querySelector('#enter-Info').value,
+        timestamp: timestamp.toISOString()
+      }
+      //add message to chat box
+        var display = document.createElement('li')
 
-       var display = document.createElement('li')
-       var input = document.querySelector('#enter-Info').value
-       display.textContent = input
-       document.querySelector('ol').appendChild(display)
-       }
+        //send message to server
+        this.socket.emit('chat message', message)
+
+      }
      })
 
   </script>
