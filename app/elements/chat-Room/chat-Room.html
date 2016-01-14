@@ -53,11 +53,10 @@
        })
 
        socket.on('chat message', function(message){
-         console.log(message)
+         console.log('socket:', message)
          var display = document.createElement('li')
          var input = message.message
-         var input1 = document.querySelector('#enter-Info').value
-         display.innerHTML = input1
+         display.innerHTML = input
          document.querySelector('ol').appendChild(display)
        })
      },
