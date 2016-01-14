@@ -55,9 +55,9 @@
    },
    triggerChat: function () {
      //document.querySelector('#enter-Info').value
-     var socket = io.connect('http://ga-webchat.herokuapp.com/', {
-       'query': 'token=' + window.localStorage.getItem('userToken')
-     })
+    //  var socket = io.connect('http://ga-webchat.herokuapp.com/', {
+    //    'query': 'token=' + window.localStorage.getItem('userToken')
+    //  })
      //
     //  socket.on('chat log', function(messages){
     //    messages.forEach(function(message){
@@ -66,22 +66,16 @@
      //
     //  })
 
-    socket.on('chat message', function(message){
-      console.log(message)
-      var display = document.createElement('li')
-      var input = document.querySelector('#enter-Info').value
-      display.innerHTML = input
-      document.querySelector('ol').appendChild(display)
-    })
-    //  console.log(document.querySelector('#enter-Info').value)
+    
+     console.log(document.querySelector('#enter-Info').value)
     //  document.querySelector('#sendButton').addEventListener('enter-Info')
     //    console.log('this work')
     // var addChat = document.createElement('li') // create a new li element
     // document.body.appendChild(addChat)
-    //  var display = document.createElement('li')
-    //  var input = document.querySelector('#enter-Info').value
-    //  display.textContent = input
-    //  document.querySelector('ol').appendChild(display)
+     var display = document.createElement('li')
+     var input = document.querySelector('#enter-Info').value
+     display.textContent = input
+     document.querySelector('ol').appendChild(display)
      //var delete = document.querySelector('#enter-Info').value
      //chatBox.appendChild(addChat)
      //document.getElementById("chatWindow").appendChild(chatBox)
