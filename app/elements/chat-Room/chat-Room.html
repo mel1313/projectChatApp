@@ -66,8 +66,9 @@
      //
     //  })
 
-    
+
      console.log(document.querySelector('#enter-Info').value)
+     socket.emit('news', { hello: document.querySelector('#enter-Info').value })
     //  document.querySelector('#sendButton').addEventListener('enter-Info')
     //    console.log('this work')
     // var addChat = document.createElement('li') // create a new li element
