@@ -9,10 +9,10 @@
         display: block;
       }
       h2 {
-        color: blue;
+        color: black;
       }
     </style>
-    <h2>this is my chatApp</h2>
+    <h2>Welcome!</h2>
     <ol>
       <li>...</li>
     </ol>
@@ -31,9 +31,11 @@
        socket.on('chat log', function(messages){
          messages.forEach(function(message, index){
            if((messages.length -index) < 10) {
-             console.log(message)
+             console.log(message.username,message.message)
              var display = document.createElement('li')
-             var input = message.message
+             var username = message.username.concat('says:')
+             var input = username.concat(message.message.slice(3, (message.message.length-4)))
+             console.log(input)
              display.innerHTML = input
              document.querySelector('ol').appendChild(display)
            }
@@ -43,9 +45,11 @@
        this.socket = socket
 
        socket.on('chat message', function(message){
-         console.log(message)
+         console.log(message.username,message.message)
          var display = document.createElement('li')
-         var input = message.message
+         var username = message.username.concat('says:')
+         var input = username.concat(message.message.slice(3, (message.message.length-4)))
+         console.log(input)
          display.innerHTML = input
          document.querySelector('ol').appendChild(display)
        })
